@@ -22,18 +22,18 @@
     }
 
     //test for native support
-    var prefixes = ['', '-webkit-', '-moz-', '-ms-'],
-        block = document.createElement('div');
+    // var prefixes = ['', '-webkit-', '-moz-', '-ms-'],
+    //     block = document.createElement('div');
 
-    for (var i = prefixes.length - 1; i >= 0; i--) {
-        try {
-            block.style.position = prefixes[i] + 'sticky';
-        }
-        catch(e) {}
-        if (block.style.position != '') {
-            seppuku();
-        }
-    }
+    // for (var i = prefixes.length - 1; i >= 0; i--) {
+    //     try {
+    //         block.style.position = prefixes[i] + 'sticky';
+    //     }
+    //     catch(e) {}
+    //     if (block.style.position != '') {
+    //         seppuku();
+    //     }
+    // }
 
     updateScrollPos();
 
@@ -67,7 +67,7 @@
             rebuild();
             return;
         }
-        
+
         if (win.pageYOffset != scroll.top) {
             updateScrollPos();
             recalcAllPos();
@@ -267,7 +267,7 @@
             },
             nodeOffset = getElementOffset(node),
             parentOffset = getElementOffset(parentNode),
-            
+
             parent = {
                 node: parentNode,
                 css: {
@@ -383,11 +383,11 @@
         if (!initialized) return;
 
         deinitAll();
-        
+
         for (var i = watchArray.length - 1; i >= 0; i--) {
             watchArray[i] = getElementParams(watchArray[i].node);
         }
-        
+
         initAll();
     }
 
@@ -405,7 +405,7 @@
 
     function stop() {
         pause();
-        deinitAll(); 
+        deinitAll();
     }
 
     function kill() {
