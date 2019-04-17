@@ -127,7 +127,7 @@
 
         if (!el.clone) clone(el);
         if (el.parent.computed.position != 'absolute' &&
-            el.parent.computed.position != 'relative') el.parent.node.style.position = 'relative';
+            el.parent.computed.position != 'relative') el.parent.node.style.setProperty('position', 'relative', 'important');
 
         recalcElementPos(el);
 
@@ -149,7 +149,7 @@
             }
         };
 
-        if (deinitParent) el.parent.node.style.position = el.parent.css.position;
+        if (deinitParent) el.parent.node.style.setProperty('position', el.parent.css.position, 'important');
         el.mode = -1;
     }
 
@@ -170,38 +170,38 @@
 
         switch (mode) {
             case 0:
-                nodeStyle.position = 'absolute';
-                nodeStyle.left = el.offset.left + 'px';
-                nodeStyle.right = el.offset.right + 'px';
-                nodeStyle.top = el.offset.top + 'px';
-                nodeStyle.bottom = 'auto';
-                nodeStyle.width = 'auto';
-                nodeStyle.marginLeft = 0;
-                nodeStyle.marginRight = 0;
-                nodeStyle.marginTop = 0;
+                nodeStyle.setProperty('position', 'absolute', 'important');
+                nodeStyle.setProperty('left', el.offset.left + 'px', 'important');
+                nodeStyle.setProperty('right', el.offset.right + 'px', 'important');
+                nodeStyle.setProperty('top', el.offset.top + 'px', 'important');
+                nodeStyle.setProperty('bottom', 'auto', 'important');
+                nodeStyle.setProperty('width', 'auto', 'important');
+                nodeStyle.setProperty('marginLeft', 0, 'important');
+                nodeStyle.setProperty('marginRight', 0, 'important');
+                nodeStyle.setProperty('marginTop', 0, 'important');
                 break;
 
             case 1:
-                nodeStyle.position = 'fixed';
-                nodeStyle.left = el.box.left + 'px';
-                nodeStyle.right = el.box.right + 'px';
-                nodeStyle.top = el.css.top;
-                nodeStyle.bottom = 'auto';
-                nodeStyle.width = 'auto';
-                nodeStyle.marginLeft = 0;
-                nodeStyle.marginRight = 0;
-                nodeStyle.marginTop = 0;
+                nodeStyle.setProperty('position', 'fixed', 'important');
+                nodeStyle.setProperty('left', el.box.left + 'px', 'important');
+                nodeStyle.setProperty('right', el.box.right + 'px', 'important');
+                nodeStyle.setProperty('top', el.css.top, 'important');
+                nodeStyle.setProperty('bottom', 'auto', 'important');
+                nodeStyle.setProperty('width', 'auto', 'important');
+                nodeStyle.setProperty('marginLeft', 0, 'important');
+                nodeStyle.setProperty('marginRight', 0, 'important');
+                nodeStyle.setProperty('marginTop', 0, 'important');
                 break;
 
             case 2:
-                nodeStyle.position = 'absolute';
-                nodeStyle.left = el.offset.left + 'px';
-                nodeStyle.right = el.offset.right + 'px';
-                nodeStyle.top = 'auto';
-                nodeStyle.bottom = 0;
-                nodeStyle.width = 'auto';
-                nodeStyle.marginLeft = 0;
-                nodeStyle.marginRight = 0;
+                nodeStyle.setProperty('position', 'absolute', 'important');
+                nodeStyle.setProperty('left', el.offset.left + 'px', 'important');
+                nodeStyle.setProperty('right', el.offset.right + 'px', 'important');
+                nodeStyle.setProperty('top', 'auto', 'important');
+                nodeStyle.setProperty('bottom', 0, 'important');
+                nodeStyle.setProperty('width', 'auto', 'important');
+                nodeStyle.setProperty('marginLeft', 0, 'important');
+                nodeStyle.setProperty('marginRight', 0, 'important');
                 break;
         }
 
@@ -214,16 +214,18 @@
         var refElement = el.node.nextSibling || el.node,
             cloneStyle = el.clone.style;
 
-        cloneStyle.height = el.height + 'px';
-        cloneStyle.width = el.width + 'px';
-        cloneStyle.marginTop = el.computed.marginTop;
-        cloneStyle.marginBottom = el.computed.marginBottom;
-        cloneStyle.marginLeft = el.computed.marginLeft;
-        cloneStyle.marginRight = el.computed.marginRight;
-        cloneStyle.padding = cloneStyle.border = cloneStyle.borderSpacing = 0;
-        cloneStyle.fontSize = '1em';
-        cloneStyle.position = 'static';
-        cloneStyle.cssFloat = el.computed.cssFloat;
+        cloneStyle.setProperty('height', el.height + 'px', 'important');
+        cloneStyle.setProperty('width', el.width + 'px', 'important');
+        cloneStyle.setProperty('marginTop', el.computed.marginTop, 'important');
+        cloneStyle.setProperty('marginBottom', el.computed.marginBottom, 'important');
+        cloneStyle.setProperty('marginLeft', el.computed.marginLeft, 'important');
+        cloneStyle.setProperty('marginRight', el.computed.marginRight, 'important');
+        cloneStyle.setProperty('padding', 0, 'important');
+        cloneStyle.setProperty('border', 0, 'important');
+        cloneStyle.setProperty('borderSpacing', 0, 'important');
+        cloneStyle.setProperty('fontSize', '1em', 'important');
+        cloneStyle.setProperty('position', 'static', 'important');
+        cloneStyle.setProperty('cssFloat', el.computed.cssFloat, 'important');
 
         el.node.parentNode.insertBefore(el.clone, refElement);
     }
